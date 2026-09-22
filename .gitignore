@@ -1,0 +1,44 @@
+# Dependencies & package managers
+node_modules/
+package-lock.json
+
+# Large video sources (preserved locally, excluded from production repo)
+videos/
+*.mp4
+
+# Test and development screenshots
+desktop_shot.png
+mobile_shot*.png
+scroll_*.png
+shot_*.png
+*.png.bak
+
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editor & IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# Python local server cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Temporary logs & test artifacts
+*.log
+scratch/
+test_*.py
+verify_*.py
+generate.py
