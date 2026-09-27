@@ -22,9 +22,9 @@ An investor-facing, high-end architectural real estate website featuring a scrol
 
 ## 🎬 How the Cinematic Scroll Animation Works
 
-1. **Scroll Tracking:** The document scroll position (`window.scrollY`) relative to the hero section (`450vh`) is measured on each scroll event.
+1. **Scroll Tracking:** The document scroll position (`window.scrollY`) relative to the hero section (`500vh`) is measured on each scroll event.
 2. **Progress Calculation:** Progress is normalized from `0.0` (estate entrance) to `1.0` (grand garden terrace).
-3. **Interpolation Loop:** A `requestAnimationFrame` loop uses linear interpolation (`currentFrameFloat += (target - currentFrameFloat) * 0.22`) to eliminate jitter and give the playback natural cinematic momentum.
+3. **Interpolation Loop:** A `requestAnimationFrame` loop uses linear interpolation (`currentFrameFloat += (target - currentFrameFloat) * 0.5`) to eliminate jitter and give the playback natural cinematic momentum without lag.
 4. **Adaptive Canvas Drawing:** The targeted frame is projected onto the responsive `<canvas>` using dynamic scale-to-cover math that preserves the native 16:9 aspect ratio without stretching or letterboxing.
 5. **Intelligent Frame Preloader:**
    - Preloads the critical initial frame for instant first contentful paint.
