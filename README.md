@@ -22,17 +22,14 @@ An investor-facing, high-end architectural real estate website featuring a scrol
 
 ## 🎬 How the Cinematic Scroll Animation Works
 
-1. **Scroll Tracking:** The document scroll position (`window.scrollY`) relative to the hero section (`500vh`) is measured on each scroll event.
-2. **Progress Calculation:** Progress is normalized from `0.0` (estate entrance) to `1.0` (grand garden terrace).
-3. **Interpolation Loop:** A `requestAnimationFrame` loop uses linear interpolation (`currentFrameFloat += (target - currentFrameFloat) * 0.5`) to eliminate jitter and give the playback natural cinematic momentum without lag.
-4. **Adaptive Canvas Drawing:** The targeted frame is projected onto the responsive `<canvas>` using dynamic scale-to-cover math that preserves the native 16:9 aspect ratio without stretching or letterboxing.
-5. **Intelligent Frame Preloader:**
-   - Preloads the critical initial frame for instant first contentful paint.
-   - Loads the first 15 frames immediately to unlock interactivity in under 150ms.
-   - Background-streams the remaining frames in non-blocking batches.
-   - Dynamically prioritizes frames within a 25-frame radius of the user's active scroll target.
-   - Uses an instant nearest-frame fallback so the canvas never drops to black or freezes during rapid scrubbing.
-6. **Synchronized 5-Phase Narrative Overlays:**
+1. **Exact Tactile Scroll Control:** Document scroll progress through the hero container (`1000vh` scroll track) maps directly to exact frame index (`frame = progress * (totalFrames - 1)`). Stopping scroll stops the video instantly without temporal lag or floating drift.
+2. **Dual-Layer Fractional Interpolation:** Between discrete video frames, the engine uses fractional alpha blending (rendering the floor frame at full opacity and the ceiling frame at fractional opacity `t = f - floor(f)`). This creates a silky smooth visual glide without delaying interaction.
+3. **Adaptive Canvas Drawing:** The targeted frame is projected onto the responsive `<canvas>` using dynamic scale-to-cover math that preserves the native aspect ratio without stretching or letterboxing.
+4. **Intelligent Frame Preloader & Anchor Priority:**
+   - Anchor frames (first frame `0` and final frame `N-1`) are requested first to guarantee bounded scrub limits immediately.
+   - Nearest-to-viewer priority queue loads outwards from current scroll position.
+   - Instant nearest-frame fallback ensures the canvas never drops to black or freezes during rapid scrubbing.
+5. **Synchronized 5-Phase Narrative Overlays:**
    - **0% – 20%:** Brand & Entrance Facade (`Where Architecture Meets Opportunity`).
    - **20% – 40%:** Architectural Rigor & Material Truth (`Sculpted With Material Truth`).
    - **40% – 60%:** Curated Portfolio & Living Spaces (`Crafted for Visionary Living`).
